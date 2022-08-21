@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "RegisterChild";
+}
+
+<div class="container">
+    <h2> <span class="glyphicon" style="font-size:100%">&#xe008;</span>Child Registration Form: </h2>
+
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div>
+            <table border="1" class="table table-bordered" style="width:500px;">
+                <tbody>
+                    <tr>
+                        <td style="background-color:cornflowerblue;color:blue">@Html.Label("First Name ")</td>
+                        <td>@Html.TextBox("Name", "", new { @class = "form-control" })</td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:cornflowerblue;color:blue">@Html.Label("Surname")</td>
+                        <td>@Html.TextBox("Name", "", new { @class = "form-control" })</td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:cornflowerblue; color:blue">
+                            @Html.Label("Gender")
+                        </td>
+                        <td>
+                            @Html.RadioButton("Gender", "Male", false, new { id = "male" }) Male
+                            <br />
+                            @Html.RadioButton("Gender", "Female", false, new { id = "female" }) Female
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:cornflowerblue; color:blue">@Html.Label("Date Of Birth")</td>
+                        <td>
+                            <div class="alert alert-info">
+                                <strong>Info!</strong>The baby must have been born after 31/12/2016
+                            </div>
+
+                            <input type="date" id="birthday" name="birthday" min="2017-01-01">
+
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    }
+</div>
+

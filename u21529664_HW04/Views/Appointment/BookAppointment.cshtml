@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "BookAppointment";
+}
+
+<h2>Book Appointment</h2>
+@{ var appointment = "";
+    if (IsPost)
+    {
+        var bookingDate = Request["One"];
+        var bookingTime = Request["Two"];
+        var cellphone = Request["Three"];
+        var reason = Request["Four"];
+        var location = Request["Five"];
+
+
+
+        var Booking = bookingDate + "," + bookingTime +
+            "," + cellphone + "," + reason + "," + location + Environment.NewLine;
+
+        var BookingFile = Server.MapPath("~/App_Data/appointment.txt");
+        File.AppendAllText(@BookingFile, Booking);
+
+        appointment = "Booking successfully made!!";
+    }
+}
+
+
+<div class="well-sm">
+    <form id="form1" method="post">
+        <div>
+            <table border="1" class="table table-bordered" style="width:1000px;">
+                <tr>
+                    <td style="background-color:orange"><p>&nbsp;Date&nbsp;</p></td>
+                    <td><p><input id="One" name="One" type="date" /></p></td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:orange"><p>&nbsp;Time&nbsp;</p></td>
+                    <td><p><input id="Two" name="Two" type="time" /></p></td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:orange"><p>&nbsp;Cellphone&nbsp;</p></td>
+                    <td><p><input id="Three" name="Three" type="tel" /></p></td>
+                </tr>
+                <tr>
+                    <td style="background-color:orange"><p>&nbsp;Reason for appointment&nbsp;</p></td>
+                    <td>
+                        <div>@Html.RadioButton("Four", "Vaccination/Immunization")Vaccination/Immunization</div>
+                        <div>@Html.RadioButton("Four", "Regular Physical Examination")Regular Physical Examination</div>
+                        <div>@Html.RadioButton("Four", "Feeling Unwell")Feeling Unwell</div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:orange"><p>&nbsp;Location&nbsp;</p></td>
+                    <td>
+                        <div>@Html.RadioButton("Five", "Chris Hani Baragwanath Academic Hospital,Gauteng")Chris Hani Baragwanath Academic Hospital,Gauteng</div>
+                        <div>@Html.RadioButton("Five", "Tshwane District Hospital,Gauteng")Tshwane District Hospital,Gauteng</div>
+                        <div>@Html.RadioButton("Five", "Tembisa Hospital,Gauteng")Tembisa Hospital,Gauteng</div>
+                        <div>@Html.RadioButton("Five", "Steve Biko Academic Hospital,Gauteng")Steve Biko Academic Hospital,Gauteng</div>
+                        <div>@Html.RadioButton("Five", "Bronkhorstspruit Hospital,Gauteng")Bronkhorstspruit Hospital,Gauteng</div>
+                        <div>@Html.RadioButton("Five", "Lebowakgomo Hospital,Limpopo")Lebowakgomo Hospital,Limpopo</div>
+                        <div>@Html.RadioButton("Five", "Polokwane Provincial Hospital,Limpopo")Polokwane Provincial Hospital,Limpopo</div>
+                        <div>@Html.RadioButton("Five", "Mankweng Hospital,Limpopo")Mankweng Hospital,Limpopo</div>
+                        <div>@Html.RadioButton("Five", "Kgapane Hospital,Limpopo")Kgapane Hospital,Limpopo</div>
+                        <div>@Html.RadioButton("Five", "Voortrekker Hospital,Limpopo")Voortrekker Hospital,Limpopo</div>
+
+                    </td>
+                </tr>
+
+            </table>
+            <button class="btn btn-warning">Book Appointment</button>
+        </div>
+        <div>
+            @if (appointment != "")
+            {
+                <p> @appointment</p>}
+        </div>
+    </form>
+</div>
+

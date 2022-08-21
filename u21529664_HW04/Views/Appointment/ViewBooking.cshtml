@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ViewBooking";
+}
+
+<h2>View Booking</h2>
+@{ var appointment = "";
+    Array Booking = null;
+    char[] delimiterChar = { ',' };
+
+
+    var BookingFile = Server.MapPath("~/App_Data/appointment.txt");
+
+    if (File.Exists(BookingFile))
+    {
+        Booking = File.ReadAllLines(BookingFile);
+        if (Booking == null)
+        {
+            // Empty file.
+            appointment = "The file is empty.";
+        }
+    }
+    else
+    {
+        // File does not exist.
+        appointment = "The file does not exist.";
+    } }
+
+<div style="height: 400px; overflow: auto;">
+    <div class="well-sm">
+        <table class="table table-condensed table-hover" id="tblBooking">
+            <thead style="position: sticky;top: 0">
+                <tr bgcolor="#222222" class="auto-style">
+                    <th class="col-lg-2" style="color:white">Appointment Date</th>
+                    <th class="col-lg-2" style="color:white">Appointment Time</th>
+                    <th class="col-lg-2" style="color:white">Cellphone</th>
+                    <th class="col-lg-2" style="color:white">Reason for appointment</th>
+                    <th class="col-lg-2" style="color:white">Hospital Name</th>
+                    <th class="col-lg-2" style="color:white">Province</th>
+                    <th class="col-lg-2" style="color:white">Update</th>
+                    <th class="col-lg-2" style="color:white">Cancel</th>
+                    @*<th class="col-lg-2" style="color:white">Cancel</th>*@
+                </tr>
+            </thead>
+            @foreach (string bookingLine in Booking)
+            {
+                <tr>
+                    @foreach (string bookingItem in bookingLine.Split(delimiterChar))
+                    {
+                        <td>@bookingItem</td>
+
+
+
+                    }
+                    <td><button class="btn btn-warning">Update Booking</button></td>
+                    <td>
+                        <button class="btn btn-danger" id="delete">
+                           Cancel Booking
+                        </button>
+                    </td>
+
+
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#tblBooking").on("click", "#delete", function (e) {
+        if (confirm("Are you sure want to delete this record!")) {
+            $(this).closest('tr').remove();
+        } else {
+            e.preventDefault();
+        }
+    });
+</script>
+

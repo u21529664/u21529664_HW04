@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "ViewVaccinationDetails";
+}
+
+<h2>View Vaccination Details</h2>
+@{ var vaccination = "";
+    Array VaccinationDetails = null;
+    char[] delimiterChar = { ',' };
+
+
+    var VacFile = Server.MapPath("~/App_Data/vaccination.txt");
+
+    if (File.Exists(VacFile))
+    {
+        VaccinationDetails = File.ReadAllLines(VacFile);
+        if (VaccinationDetails == null)
+        {
+            // Empty file.
+            vaccination = "The file is empty.";
+        }
+    }
+    else
+    {
+
+        // File does not exist.
+        vaccination = "The file does not exist.";
+    } }
+
+<div style="height: 400px; overflow: auto" id="tblVaccination">
+    <div class="well-sm">
+        <table class="table table-condensed table-hover">
+            <thead style="position: sticky;top: 0">
+                <tr bgcolor="#222222" class="auto-style">
+                    <th class="col-sm-4" style="color:white">Vaccine Name</th>
+                    <th class="col-sm-4" style="color:white">Vaccination Date</th>
+
+                </tr>
+            </thead>
+            @foreach (string vaccineLine in VaccinationDetails)
+            {
+                <tr>
+                    @foreach (string vaccineItem in vaccineLine.Split(delimiterChar))
+                    {
+                        <td>@vaccineItem</td>
+
+
+
+                    }
+
+
+
+                </tr>
+
+            }
+        </table>
+
+    </div>
+</div>
+

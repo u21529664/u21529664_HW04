@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "RegisterParent";
+}
+
+<div class="container">
+    <h2> <span class="glyphicon" style="font-size:100%">&#xe008;</span>Parent Registration Form: </h2>
+
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div>
+            <table border="1" class="table table-bordered" style="width:500px;">
+                <tbody>
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("First Name ")</td>
+                        <td>@Html.TextBox("Name", "", new { @class = "form-control" })</td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("Surname")</td>
+                        <td>@Html.TextBox("Name", "", new { @class = "form-control" })</td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("Date Of Birth")</td>
+                        <td><input type="date" id="birthday" name="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("Address")</td>
+                        <td>@Html.TextArea("Address", " ", new { @class = "form-control", id = "IdAddress" })</td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("Cell number") </td>
+                        <td> <input type="tel" id="cellphone"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:orange">@Html.Label("Email")</td>
+                        <td>
+                            <input type="email" id="parentemail" />
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+            <button class="btn btn-warning" style="color:white">@Html.ActionLink("Add Child's Personal Details", "RegisterChild", "Register")</button>
+        </div>
+    }
+</div>
+

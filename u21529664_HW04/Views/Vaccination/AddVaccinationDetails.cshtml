@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "AddVaccinationDetails";
+}
+
+@{ var vaccination = "";
+    if (IsPost)
+    {
+        var vaccineName = Request["One"];
+        var vaccinationTime = Request["Two"];
+
+        var VaccinationDetails = vaccineName + "," + vaccinationTime + Environment.NewLine;
+
+        var VacFile = Server.MapPath("~/App_Data/vaccination.txt");
+        File.AppendAllText(@VacFile, VaccinationDetails);
+
+        vaccination = "Vaccination Details have been sucessfully added!! to view the details click the  'View Vaccination Details' button";
+    
+    }
+}
+
+
+<h2 style="color:red">Baby's Vaccination Journey</h2>
+<div>
+    <form id="form1" method="post">
+        <table border="1" class="table table-bordered" style="width:1000px;">
+            <tbody>
+
+                <tr>
+                    <td style="background-color:indianred">@Html.Label("Vaccine Name")</td>
+
+                    <td>
+                        <div>@Html.RadioButton("One", "6 weeks OPV(Oral Polio Vaccine")  6 weeks   OPV(Oral Polio Vaccine</div>
+                        <div>@Html.RadioButton("One", "6 weeks RV(Rotavirus Vaccine")  6 weeks   RV(Rotavirus Vaccine)</div>
+                        <div>@Html.RadioButton("One", "6 weeks DTaP-IPV-Hib-HBV")  6 weeks   DTaP-IPV-Hib-HBV</div>
+                        <div>@Html.RadioButton("One", "6 weeks  PCV(Pneumococcal Conjugated Vaccine)")  6 weeks   PCV(Pneumococcal Conjugated Vaccine)</div>
+                        <div>@Html.RadioButton("One", "10 weeks DTap-IPV-Hib-HBV")  10 weeks   DTap-IPV-Hib-HBV</div>
+                        <div>@Html.RadioButton("One", "14 weeks RV(Rotavirus Vaccine)")  14 weeks   RV(Rotavirus Vaccine)</div>
+                        <div>@Html.RadioButton("One", "14 weeks DTap-IPV-Hib-HBV")  14 weeks   DTap-IPV-Hib-HBV</div>
+                        <div>@Html.RadioButton("One", "14 weeks PCV(Pneumococcal Conjugated Vaccine")  14 weeks   PCV(Pneumococcal Conjugated Vaccine)</div>
+                        <div>@Html.RadioButton("One", "6 months Measles vaccine")  6 months   Measles Vaccine</div>
+                        <div>@Html.RadioButton("One", "9 months PCV(Pneumocal Conjugated Vaccine")  9 months   PCV(Pneumocal Conjugated Vaccine)</div>
+                        <div>@Html.RadioButton("One", "12 months Measles Vaccine")  12 Months   Measles Vaccine</div>
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td style="background-color:indianred">@Html.Label("Vaccination Date")</td>
+                    <td><input type="date" id="Two" name="Two"></td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <button class="btn btn-danger" style="color:blue" >Add Vaccination Details</button>
+
+        <button class="btn btn-danger" >
+            @Html.ActionLink("View Vaccination Details", "ViewVaccinationDetails", "Vaccination")
+        </button>
+        
+        <div>
+            @if (vaccination != "")
+            {
+                <p>@vaccination</p>}
+        </div>
+
+    </form>
+    
+
+</div>
+

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:blue">Medical Conditions</h2>
+
+<div>
+    <h3>Mother's Medical Conditions</h3>
+
+    <div class="alert alert-info">
+        <strong>Info!</strong>If you don't have any medical condition that can be transferred to baby via breastfeeding,please breastfeed the baby.
+    </div>
+    <label for="c1"><input type="checkbox" value="red" id="c1">Flu</label>
+    <label for="c2"><input type="checkbox" value="green" id="c2">HIV/AIDS</label>
+    <br />
+    <button class="btn btn-primary" onclick="Submit()">Submit Parent medical information</button>
+
+
+    <h3>Baby's Medical Conditions</h3>
+
+    <label for="c6"><input type="radio" id="c6" />Measles</label>
+    <label for="c7"><input type="radio" id="c7" />Polio</label>
+    <label for="c8"><input type="radio" id="c8" />Diarrhea</label>
+
+    <div>@Html.Label("HIV Status")</div>
+    <label for="c3"><input type="radio" id="c3" />Positive</label>
+    <label for="c4"><input type="radio" id="c4" />Negative</label>
+    <label for="c5"><input type="radio" id="c5" />Don't know</label>
+    <br />
+    <button class="btn btn-primary" onclick="Add()">Submit Child's medical information</button>
+
+</div>
+<script type="text/javascript">
+    function Submit()
+    {
+        if (document.getElementById("c1").checked == true) {
+            alert("Please wear a mask whenever you are around the baby, as the flu droplets that you release when you sneeze or cough put the baby at a HIGH risk of developing PNEUMONIA,which is one the diseases that lead to under 5 mortality and continue BREASTFEEDING ")
+        }
+        else if (document.getElementById("c2").checked == true) {
+            alert("Kindly please do not breastfeed the baby,as HIV/AIDS can be transmitted to be the baby via breastfeeding.Visit your nearest hospital,so they can refer you to various milk banks where you can get breast milk to feed your baby")
+        }
+    };
+    function Add()
+    {
+        if (document.getElementById("c3").checked == true) {
+            alert("Please book regular checkups for the baby")
+        }
+        else if (document.getElementById("c5").checked == true) {
+            alert("Please book an appointment ,so the baby can get tested");
+
+        }
+        else if (document.getElementById("c6").checked == true) {
+            alert("Please rush the baby to the nearest hospital");
+        }
+        else if (document.getElementById("c7").checked == true) {
+            alert("Please rush the baby to the nearest hospital");
+        }
+        else if (document.getElementById("c8").checked == true) {
+            alert("Please rush the baby to the nearest hospital");
+        }
+
+    }
+</script>
